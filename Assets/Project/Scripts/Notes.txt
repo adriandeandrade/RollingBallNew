@@ -1,0 +1,1 @@
+minSpawnLocation = -21x - 20x 1.5y, -21z - 20z
