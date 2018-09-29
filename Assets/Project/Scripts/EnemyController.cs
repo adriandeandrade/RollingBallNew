@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rBody;
     [SerializeField] private float moveSpeed;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
