@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     private GameObject player;
     [SerializeField] private float lerpTime;
     [SerializeField] private Vector3 distanceFromPlayer;
+    [SerializeField] private GameManager gameManager;
 
     private void Start()
     {
@@ -15,6 +16,9 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!gameManager.isPlayerAlive)
+            return;
+
         FollowPlayer();
     }
 
@@ -25,12 +29,5 @@ public class CameraController : MonoBehaviour
 
         transform.position = newPosition;
         transform.LookAt(player.transform);
-
-
-        //Vector3 currentPos = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
-        //Vector3 newPos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-
-        //transform.position = Vector3.Lerp(currentPos, newPos, lerpTime);
     }
-
 }

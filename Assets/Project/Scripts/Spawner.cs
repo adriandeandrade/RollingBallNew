@@ -10,10 +10,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int amountToSpawn;
 
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             SpawnEnemy(amountToSpawn);
         }
@@ -24,7 +30,8 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             Vector3 spawnPosition = Utility.PickSpawnLocation(minSpawn, maxSpawn);
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            gameManager.enemies.Add(enemy);
         }
     }
 }
