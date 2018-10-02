@@ -11,23 +11,25 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int maxCoins = 10;
 
     [HideInInspector] public GameObject player;
-    [HideInInspector] public bool isPlayerAlive;
-    private bool gameWon;
-
     [SerializeField] private GameObject winUI;
 
+    //[HideInInspector] public bool isPlayerAlive;
+    private bool gameWon;
+
     public List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] private Vector3 teleportPos;
 
     private void Start()
     {
-        isPlayerAlive = true;
+        //isPlayerAlive = true;
         player = FindObjectOfType<PlayerController>().gameObject;
         gameWon = false;
+        coins = 0;
     }
 
     private void Update()
     {
-        if (!isPlayerAlive)
+        if (player == null)
             return;
 
         CheckForBounds();
@@ -35,37 +37,36 @@ public class GameManager : MonoBehaviour
         if (playerHealth <= 0)
         {
             EndGame();
-            RestartLevel();
         }
 
         if(coins == maxCoins)
         {
-            WinGame();
+            winUI.SetActive(true);
             gameWon = true;
         }
 
-        if(gameWon)
+        // Restart game
+        if (gameWon)
         {
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+
+            enemies.Clear();
+
             if (Input.GetKeyDown(KeyCode.P))
-                RestartLevel();
+                EndGame();
         }
     }
 
     void CheckForBounds()
     {
         if (player.transform.position.y < dieLevel)
-            RestartLevel();
-    }
-
-    void WinGame()
-    {
-        winUI.SetActive(true);
-    }
-
-    void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        coins = 0;
+        {
+            player.transform.position = teleportPos;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero; // Reset speed after reset so the ball doesnt keep moving.
+        }
     }
 
     public void DamagePlayer(int amount)
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        isPlayerAlive = false;
+        //isPlayerAlive = false;
         Destroy(player.gameObject);
 
         foreach (GameObject enemy in enemies)
@@ -87,5 +88,6 @@ public class GameManager : MonoBehaviour
         }
 
         enemies.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

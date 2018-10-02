@@ -10,11 +10,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text healthText;
     [SerializeField] private Text coinText;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         UpdateUI();

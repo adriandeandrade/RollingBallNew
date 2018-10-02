@@ -11,15 +11,15 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = gameManager.player;
     }
 
     private void FixedUpdate()
     {
-        if (!gameManager.isPlayerAlive)
-            return;
-
-        FollowPlayer();
+        if(player != null)
+        {
+            FollowPlayer();
+        }
     }
 
     void FollowPlayer()

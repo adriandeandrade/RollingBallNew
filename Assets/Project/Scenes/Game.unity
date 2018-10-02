@@ -208,7 +208,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -365,7 +365,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966783
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -384,11 +384,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0.19517589, y: 0, z: 0, w: 0.98076826}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalPosition: {x: 0.4, y: 11.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 22.51, y: 0, z: 0}
 --- !u!114 &282840815
 MonoBehaviour:
@@ -611,9 +611,8 @@ GameObject:
   m_Component:
   - component: {fileID: 362694535}
   - component: {fileID: 362694534}
-  - component: {fileID: 362694536}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: SPAWNMANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,10 +629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5887977324b2e74792b020210ae357a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToSpawn: 20
+  amountOfEnemies: 20
+  amountOfCoins: 10
   enemyPrefab: {fileID: 1140200190776100, guid: 94431b29fc3118344aa3c181021a7706,
     type: 2}
-  gameManager: {fileID: 0}
+  coinPrefab: {fileID: 1840186668655826, guid: 1af4c10fe306f5844aea2ecd4ef34757, type: 2}
+  gameManager: {fileID: 461509686}
 --- !u!4 &362694535
 Transform:
   m_ObjectHideFlags: 0
@@ -647,19 +648,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &362694536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 362694533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988ba81f37174054da198590bda17e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amountToSpawn: 10
-  coinPrefab: {fileID: 1840186668655826, guid: 1af4c10fe306f5844aea2ecd4ef34757, type: 2}
 --- !u!1 &461509685
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,9 +680,9 @@ MonoBehaviour:
   coins: 0
   maxCoins: 10
   player: {fileID: 0}
-  isPlayerAlive: 0
   winUI: {fileID: 1517664178}
   enemies: []
+  teleportPos: {x: 0.4, y: 1.5, z: 0}
 --- !u!4 &461509687
 Transform:
   m_ObjectHideFlags: 0
@@ -1118,7 +1106,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1371,7 +1359,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 29bc505a745a49b4ab54ce68eb6a844e, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
@@ -1592,11 +1580,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909656614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1909656619
 Rigidbody:
@@ -1632,6 +1620,8 @@ MonoBehaviour:
   collisionEffect: {fileID: 1187059019910190, guid: a8530318e8e5c1440ae4944be9a5e349,
     type: 2}
   enemyCollisionEffect: {fileID: 1187059019910190, guid: 36495e84e49b6084ba00e4d57d135984,
+    type: 2}
+  coinCollectEffect: {fileID: 1746226237899140, guid: 5a9202ec481aae14d99409dd1aae4262,
     type: 2}
 --- !u!1 &1943922006
 GameObject:

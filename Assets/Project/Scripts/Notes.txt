@@ -1,1 +1,9 @@
-minSpawnLocation = -21x - 20x 1.5y, -21z - 20z
+* Finishing touches *
+
+- Spawn enemies when the game starts /\
+- Instead of restarting the game when the player falls off, just teleport them to the middle of the playing field /\
+- Add particle effect when collecting a coin /\
+- Fix particle collisions (they fall through the floor now) /\
+- Add main menu and pause screen
+- Fix camera shake
+- Re-enable jump

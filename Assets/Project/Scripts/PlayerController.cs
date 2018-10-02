@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject collisionEffect;
     [SerializeField] private GameObject enemyCollisionEffect;
+    [SerializeField] private GameObject coinCollectEffect;
 
     private void Start()
     {
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             gameManager.coins++;
+            GameObject effect = Instantiate(coinCollectEffect, other.transform.position, Quaternion.identity);
+            Destroy(effect, 2.0f);
         }
     }
 

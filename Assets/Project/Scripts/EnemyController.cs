@@ -13,16 +13,16 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = gameManager.player;
         rBody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        if (!gameManager.isPlayerAlive)
-            return;
-
-        MoveTowardsPlayer();
+        if (player != null)
+        {
+            MoveTowardsPlayer();
+        }
     }
 
     private void MoveTowardsPlayer()
