@@ -10,10 +10,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int coins;
     [HideInInspector] public int maxCoins = 10;
 
-    [HideInInspector] public GameObject player;
-    [SerializeField] private GameObject winUI;
+    public static GameObject player;
 
-    //[HideInInspector] public bool isPlayerAlive;
     private bool gameWon;
 
     public List<GameObject> enemies = new List<GameObject>();
@@ -21,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //isPlayerAlive = true;
         player = FindObjectOfType<PlayerController>().gameObject;
         gameWon = false;
         coins = 0;
@@ -39,9 +36,9 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
-        if(coins == maxCoins)
+        if (coins == maxCoins)
         {
-            winUI.SetActive(true);
+            UIManager.ActivateUI("winUI");
             gameWon = true;
         }
 
@@ -79,7 +76,6 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        //isPlayerAlive = false;
         Destroy(player.gameObject);
 
         foreach (GameObject enemy in enemies)

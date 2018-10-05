@@ -41,14 +41,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             rBody.velocity += Vector3.right * moveSpeed * Time.fixedDeltaTime;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
-    }
-
-    void Jump()
-    {
-        rBody.AddForce(new Vector3(0, jumpAmount, 0), ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -7,11 +7,10 @@ public class CameraController : MonoBehaviour
     private GameObject player;
     [SerializeField] private float lerpTime;
     [SerializeField] private Vector3 distanceFromPlayer;
-    [SerializeField] private GameManager gameManager;
 
     private void Start()
     {
-        player = gameManager.player;
+        player = GameManager.player;
     }
 
     private void FixedUpdate()

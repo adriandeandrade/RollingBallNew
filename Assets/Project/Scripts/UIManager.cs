@@ -1,25 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private Image healthBarSprite;
-    [SerializeField] private Text healthText;
-    [SerializeField] private Text coinText;
+    private static Dictionary<string, GameObject> panels = new Dictionary<string, GameObject>();
 
-    private void Update()
+    [SerializeField] private GameObject healthUI;
+    [SerializeField] private GameObject coinUI;
+    [SerializeField] private GameObject winUI;
+
+    public void Start()
     {
-        UpdateUI();
+        panels.Add("healthUI", healthUI);
+        panels.Add("coinUI", coinUI);
+        panels.Add("winUI", winUI);
     }
 
-    void UpdateUI()
+    public static void ActivateUI(string panelName)
     {
-        coinText.text = gameManager.coins.ToString() + " / " + gameManager.maxCoins.ToString();
-        healthText.text = "Health: " + gameManager.playerHealth + " /5";
+        GameObject panel;
 
-        healthBarSprite.fillAmount = Mathf.Lerp(healthBarSprite.fillAmount, gameManager.playerHealth / 5f, 0.1f);
+        if(panels.TryGetValue(panelName, out panel))
+            panel.SetActive(true);
+        else
+            Debug.LogError("Panel with name: " + panelName + " cannot be found.");
+
     }
+
+    public static void DeActivateUI(string panelName)
+    {
+        GameObject panel;
+
+        if (panels.TryGetValue(panelName, out panel))
+            panel.SetActive(false);
+        else
+            Debug.LogError("Panel with name: " + panelName + " cannot be found.");
+
+    }
+
 }
